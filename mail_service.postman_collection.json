@@ -1,0 +1,614 @@
+{
+	"info": {
+		"_postman_id": "4a41b223-f57a-463d-85da-c548895bb289",
+		"name": "mail_service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "sign up api for parcel owner, train operator and the post master",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "csrf",
+						"value": "DFUVRuNUvH6KBo91z4dYDyHuWol6IE3ZetGLFNRdN1WgEc3auCv2mlBohIcfbos",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "default"
+						},
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "default"
+						},
+						{
+							"key": "user_type",
+							"value": "POST_MASTER",
+							"type": "default"
+						},
+						{
+							"key": "first_name",
+							"value": "sjdfn",
+							"type": "default"
+						},
+						{
+							"key": "last_name",
+							"value": "jsnf",
+							"type": "default"
+						},
+						{
+							"key": "email",
+							"value": "admin2@gmail.com",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/user/sign-up/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"sign-up",
+						""
+					]
+				},
+				"description": "Sign up api this api is used to create parcel owner, train operator and post master"
+			},
+			"response": []
+		},
+		{
+			"name": "login api for every type of user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc1OTI5Mjc0LCJpYXQiOjE2NzU5Mjg5NzQsImp0aSI6ImU1ZDA5NDc2NjA3NDRjYTNhMmIyMDU3MGNjYzFjYzM4IiwidXNlcl9pZCI6MX0.QSctOILRIJsM81mVAzcrbOLi_39hlagEQg5PBr7qbEo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "This api is used to get the list of all parcel list of the logged in parcel owner only parcel owner or post master can access this api",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc1ODYzMTcxLCJpYXQiOjE2NzU4NjI4NzEsImp0aSI6ImYzNDdiMzg3YmVmNjRiYjA5MzhhMjQ1OGZkZGEyYThlIiwidXNlcl9pZCI6MX0.4l0EVhgy22IYNxTlKIc8Di-CzgDCPuXSzxz6Vs4mZr8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/shipping/post-parcel/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"shipping",
+						"post-parcel",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "This api is used to create a new parcel for ship only parcel owner user can access this api",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc1OTMyMjU0LCJpYXQiOjE2NzU5MzE5NTQsImp0aSI6ImM2M2VkYzM5ZTliODQ0NWM4MTY2ZmJiZmI4OWUwMDg0IiwidXNlcl9pZCI6Mn0.yhhIxcC9P9uTZZRlBq1itPrJJQuUubtX5C1SR6309NY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "parcel_name",
+							"value": "Product XVY",
+							"type": "default"
+						},
+						{
+							"key": "parcel_weight",
+							"value": "434342",
+							"type": "default"
+						},
+						{
+							"key": "parcel_volume",
+							"value": "8",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/shipping/post-parcel/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"shipping",
+						"post-parcel",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "This api is used to withdraw the package only parcel owner can withdraw it",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc1ODQ5MjIyLCJpYXQiOjE2NzU4NDg5MjIsImp0aSI6ImFjYjRhM2RjYzM0NzQwNmM4MDVmMGFmNGY2MDcxNjhjIiwidXNlcl9pZCI6MTF9.HOBhWKaQ7UKURx2OuzkgeF_z6XKlsV12-twCvlFHyoE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "is_withdraw",
+							"value": "true",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/shipping/withdraw-parcel/5/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"shipping",
+						"withdraw-parcel",
+						"5",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "This api is used to tell the user that there parcel is shipped or not if shipped so it will return the cost",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc1ODY0NjgwLCJpYXQiOjE2NzU4NjQzODAsImp0aSI6ImQ1N2Y1ZDQ5YjQ4YjRjMjliYzgwODgzN2RmNTExZWVmIiwidXNlcl9pZCI6MX0.IW7uhptD5FIIhMkvVdJEq8LEAMU8gb3zQzEZlWpBPwU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/shipping/parcel-shipped-detail/4/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"shipping",
+						"parcel-shipped-detail",
+						"4",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "This api is used to create a train tracks only post master can access this api",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc1OTI5Mjc0LCJpYXQiOjE2NzU5Mjg5NzQsImp0aSI6ImU1ZDA5NDc2NjA3NDRjYTNhMmIyMDU3MGNjYzFjYzM4IiwidXNlcl9pZCI6MX0.QSctOILRIJsM81mVAzcrbOLi_39hlagEQg5PBr7qbEo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "source",
+							"value": "Indore",
+							"type": "default"
+						},
+						{
+							"key": "destination",
+							"value": "ujjain",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/shipping/train-tracks/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"shipping",
+						"train-tracks",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "This api is used to get the list of all the train tracks only post master can access this api",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc1OTI5Mjc0LCJpYXQiOjE2NzU5Mjg5NzQsImp0aSI6ImU1ZDA5NDc2NjA3NDRjYTNhMmIyMDU3MGNjYzFjYzM4IiwidXNlcl9pZCI6MX0.QSctOILRIJsM81mVAzcrbOLi_39hlagEQg5PBr7qbEo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/shipping/train-tracks/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"shipping",
+						"train-tracks",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "This api is used to return the list of all shipped train only post master have access to see this list",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc1OTM1NTEyLCJpYXQiOjE2NzU5MzUyMTIsImp0aSI6ImU4ZTMzMDdlMjZmNjRkYzBhZDcyZTUyOGE2ODU1MjQ0IiwidXNlcl9pZCI6MX0.vY0iwo4G9RlpVvRbm8qGgSifv3ra8h_nxnBoVo3DndE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/shipping/booked-train-list/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"shipping",
+						"booked-train-list",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "This api is used to book a train and shipped the parcel only post master can book and send the train.",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc1OTM4NTIxLCJpYXQiOjE2NzU5MzgyMjEsImp0aSI6ImI0MjFmZTM5MzI4YzQ3YzhhYjZiNDI2MDViNDljYjNkIiwidXNlcl9pZCI6MX0.LZCqgb5VD_Vul806nm5RakwPpDDvGUC_rLrAf-_YvZs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "train",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "parcel",
+							"value": "3",
+							"type": "default"
+						},
+						{
+							"key": "assigned_lines",
+							"value": "2",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/shipping/book-train/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"shipping",
+						"book-train",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "This api is used to return the list of all the posted offer train only post master and the train owner can access this api",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc1OTQwODY1LCJpYXQiOjE2NzU5NDA1NjUsImp0aSI6IjNjMTg5M2JkNGEyYTQwNGRiNjgwMThkNGRlNmZjMDk2IiwidXNlcl9pZCI6MX0.Kg6OqzAQajK6zkhYfQYJMnPpjsoimMN52oPxoi1T0Tc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/shipping/post-train-offer/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"shipping",
+						"post-train-offer",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "This api is used to post a train offer only train operator can access this api",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc1OTQwODY1LCJpYXQiOjE2NzU5NDA1NjUsImp0aSI6IjNjMTg5M2JkNGEyYTQwNGRiNjgwMThkNGRlNmZjMDk2IiwidXNlcl9pZCI6MX0.Kg6OqzAQajK6zkhYfQYJMnPpjsoimMN52oPxoi1T0Tc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"train_name\":\"abx\",\n    \"capacity\":4000,\n     \"cost\":400,\n\"lines_they_operate\":[1,2]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/shipping/post-train-offer/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"shipping",
+						"post-train-offer",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "This api is used to withdraw the package only train operator can withdraw it",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc1OTQyNjU2LCJpYXQiOjE2NzU5NDIzNTYsImp0aSI6IjU0ZGQ0OTc4NGM5NDQzYTVhZTM5M2RkYzZmMGFkNjAwIiwidXNlcl9pZCI6M30.uSyYA1teg9sdx9TX5GozY2xESMURJ0YEP0jFvVPhP5M",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"withdraw_bids\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/shipping/withdraw-train-offer/2/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"shipping",
+						"withdraw-train-offer",
+						"2",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "This api is used to tell the user that there parcel is shipped or not if shipped so it will assigned lines, parcel detail and the train left time",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY3NzI0NjY0OSwiaWF0IjoxNjc1OTUwNjQ5LCJqdGkiOiIxOTMxYjIyZDAxYjQ0OTgxYWM4Yjk2NTM0Y2I4MWQwOSIsInVzZXJfaWQiOjF9.IgaCUUQzJI8ogIwyj-6sfSvQu1YZhwjFflgeC1AAEHc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/shipping/train-shipped-detail/2/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"shipping",
+						"train-shipped-detail",
+						"2",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
