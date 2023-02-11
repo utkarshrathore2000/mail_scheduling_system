@@ -19,7 +19,7 @@ services:
             context: .
             dockerfile: docker/Dockerfile-django
         volumes:
-            - "./service:/app"
+            - "./mail_service:/app"
         depends_on:
             - db
         environment:
