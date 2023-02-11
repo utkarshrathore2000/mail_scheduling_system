@@ -1,0 +1,14 @@
+django==2.2.7
+djangorestframework==3.10.3
+djangorestframework-simplejwt==5.2.2
+
+
+# Test & quality tools
+pytest==5.3.0
+pytest-django==3.7.0
+coverage==4.5.4
+black==22.3.0
+django-debug-toolbar==2.1
+
+# Database
+psycopg2-binary==2.9.5
