@@ -1,7 +1,8 @@
-from core.serializers import UserSerializer
 from rest_framework import serializers
 
-from .models import Parcel
+from core.serializers import UserSerializer
+
+from .models import Parcel, Train
 
 
 class ParcelSerializer(serializers.ModelSerializer):
@@ -9,4 +10,12 @@ class ParcelSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Parcel
+        fields = "__all__"
+
+
+class PostTrainOfferSerializer(serializers.ModelSerializer):
+    train_operator = UserSerializer(required=False)
+
+    class Meta:
+        model = Train
         fields = "__all__"
