@@ -4,9 +4,12 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .models import Parcel, Train, TrainTrack
-from .permissions import ParcelPermissions, TrainPermissions, PostMasterPermissions
-from .serializers import ParcelSerializer, PostTrainOfferSerializer, TrainTrackSerializer
+from .models import Parcel, ShippedParcel, Train, TrainTrack
+from .permissions import (ParcelPermissions, PostMasterPermissions,
+                          TrainPermissions)
+from .serializers import (BookedTrainListSerializer,
+                          BookTrainAndShippedSerializer, ParcelSerializer,
+                          PostTrainOfferSerializer, TrainTrackSerializer)
 from .utils import get_parcel_shipped_data, get_train_shipped_data
 
 
@@ -128,4 +131,27 @@ class TrainTrackView(generics.ListCreateAPIView):
          Params:
             source: CharField
             destination: CharField
+    """
+
+
+class BookedTrainListView(generics.ListAPIView):
+    permission_classes = (IsAuthenticated, PostMasterPermissions)
+    serializer_class = BookedTrainListSerializer
+    queryset = ShippedParcel.objects.all().select_related(
+        "train", "parcel", "assigned_lines"
+    )
+    __doc__ = """
+    GET: This api is used to return the list of all shipped train only post master have access to see this list.
+    """
+
+
+class BookTrainAndShippedView(generics.CreateAPIView):
+    permission_classes = (IsAuthenticated, PostMasterPermissions)
+    serializer_class = BookTrainAndShippedSerializer
+    __doc__ = """
+        POST: This api is used to book a train and shipped the parcel only post master can book and send the train.
+          Params:
+              train_id: ID of the train,
+              parcel_id: ID of the parcel,
+              assigned_lines: ID of the lines that need to assign
     """
