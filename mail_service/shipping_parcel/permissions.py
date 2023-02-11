@@ -37,3 +37,15 @@ class TrainPermissions(permissions.BasePermission):
                 return False
         else:
             return False
+
+
+class PostMasterPermissions(permissions.BasePermission):
+    __doc__ = """
+    Only post master have a access.
+    """
+
+    def has_permission(self, request, view):
+        if request.user.user_type == "POST_MASTER":
+            return True
+        else:
+            return False
