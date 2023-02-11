@@ -2,7 +2,7 @@ from django.urls import path
 
 from .views import (ParcelShippedDetailView, ParcelView, PostTrainOfferView,
                     TrainShippedDetailView, WithDrawParcel,
-                    WithDrawTrainOfferView)
+                    WithDrawTrainOfferView, TrainTrackView)
 
 urlpatterns = [
     # Parcel related endpoints
@@ -13,4 +13,6 @@ urlpatterns = [
     path("post-train-offer/", PostTrainOfferView.as_view()),
     path("withdraw-train-offer/<int:pk>/", WithDrawTrainOfferView.as_view()),
     path("train-shipped-detail/<int:pk>/", TrainShippedDetailView.as_view()),
+    # Train track related endpoints
+    path("train-tracks/", TrainTrackView.as_view()),
 ]

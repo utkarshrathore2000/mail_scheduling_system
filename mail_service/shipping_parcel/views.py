@@ -4,10 +4,10 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .models import Parcel, Train
-from .permissions import ParcelPermissions, TrainPermissions
-from .serializers import ParcelSerializer
-from .utils import get_parcel_shipped_data
+from .models import Parcel, Train, TrainTrack
+from .permissions import ParcelPermissions, TrainPermissions, PostMasterPermissions
+from .serializers import ParcelSerializer, PostTrainOfferSerializer, TrainTrackSerializer
+from .utils import get_parcel_shipped_data, get_train_shipped_data
 
 
 class ParcelView(generics.ListCreateAPIView):
@@ -116,3 +116,16 @@ class TrainShippedDetailView(APIView):
         )
         response_data = get_train_shipped_data(train)
         return Response(response_data, status=status.HTTP_200_OK)
+
+
+class TrainTrackView(generics.ListCreateAPIView):
+    permission_classes = (IsAuthenticated, PostMasterPermissions)
+    serializer_class = TrainTrackSerializer
+    queryset = TrainTrack.objects.all()
+    __doc__ = """
+    GET: This api is used to return the list of all the train tracks only post master can access this api.
+    POST: This api is used to create a train tracks only post master can access this api.
+         Params:
+            source: CharField
+            destination: CharField
+    """
