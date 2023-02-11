@@ -31,7 +31,7 @@ shell:
 
 init-db:
 	@echo -e "$(CYAN)Starting Bash in the postgres container:$(COFF)"
-	@docker exec -it mail_service_db bash -c "psql -U postgres -c 'CREATE DATABASE shipdb;'"
+	@docker exec -it mail_service_db bash -c "psql -U postgres -c 'CREATE DATABASE ship_db;'"
 
 build:
 	@echo -e "$(CYAN)Creating Docker images:$(COFF)"
