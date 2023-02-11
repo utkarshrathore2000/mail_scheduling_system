@@ -1,8 +1,9 @@
 from django.urls import path
 
-from .views import (ParcelShippedDetailView, ParcelView, PostTrainOfferView,
-                    TrainShippedDetailView, WithDrawParcel,
-                    WithDrawTrainOfferView, TrainTrackView)
+from .views import (BookedTrainListView, BookTrainAndShippedView,
+                    ParcelShippedDetailView, ParcelView, PostTrainOfferView,
+                    TrainShippedDetailView, TrainTrackView, WithDrawParcel,
+                    WithDrawTrainOfferView)
 
 urlpatterns = [
     # Parcel related endpoints
@@ -15,4 +16,7 @@ urlpatterns = [
     path("train-shipped-detail/<int:pk>/", TrainShippedDetailView.as_view()),
     # Train track related endpoints
     path("train-tracks/", TrainTrackView.as_view()),
+    # Booked train fill parcel and shipped train related endpoints
+    path("booked-train-list/", BookedTrainListView.as_view()),
+    path("book-train/", BookTrainAndShippedView.as_view()),
 ]
