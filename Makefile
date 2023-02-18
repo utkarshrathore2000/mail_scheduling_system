@@ -42,7 +42,12 @@ runserver:
 	@docker-compose up
 	@echo -e "$(CYAN)App ready and listening at http://127.0.0.1:8000.$(COFF)"
 
-setup: build runserver init-db migrate
+runserver-d:
+	@echo -e "$(CYAN)Starting Docker container with the app.$(COFF)"
+	@docker-compose up -d
+	@echo -e "$(CYAN)App ready and listening at http://127.0.0.1:8000.$(COFF)"
+
+setup: build runserver-d init-db migrate runserver
 	@echo -e "$(GREEN)===================================================================="
 	@echo "SETUP SUCCEEDED"
 	@echo -e "Run 'make runserver' to start the Django development server.$(COFF)"
