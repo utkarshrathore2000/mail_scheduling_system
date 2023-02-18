@@ -3,10 +3,11 @@ from .serializers import ParcelSerializer, TrainTrackSerializer
 
 
 def get_parcel_shipped_data(parcel):
-    response_data = {"shipping_status": False, "shipping_cost": None}
-    if parcel and parcel.cost:
-        response_data = {"shipping_status": True, "shipping_cost": parcel.cost}
-    return response_data
+    return (
+        {"shipping_status": True, "shipping_cost": parcel.cost}
+        if parcel and parcel.cost
+        else {"shipping_status": False, "shipping_cost": None}
+    )
 
 
 def get_train_shipped_data(train):

@@ -7,17 +7,9 @@ class ParcelPermissions(permissions.BasePermission):
     """
 
     def has_permission(self, request, view):
-        if request.user.user_type in ["PARCEL_OWNER", "POST_MASTER"]:
-            if request.method == "GET":
-                return True
-            elif (
-                request.method == "POST" or request.method == "PATCH"
-            ) and request.user.user_type == "PARCEL_OWNER":
-                return True
-            else:
-                return False
-        else:
-            return False
+        return request.user.user_type == "PARCEL_OWNER" or (
+            request.user.user_type == "POST_MASTER" and request.method == "GET"
+        )
 
 
 class TrainPermissions(permissions.BasePermission):
@@ -26,17 +18,9 @@ class TrainPermissions(permissions.BasePermission):
     """
 
     def has_permission(self, request, view):
-        if request.user.user_type in ["TRAIN_OPERATOR", "POST_MASTER"]:
-            if request.method == "GET":
-                return True
-            elif (
-                request.method == "POST" or request.method == "PATCH"
-            ) and request.user.user_type == "TRAIN_OPERATOR":
-                return True
-            else:
-                return False
-        else:
-            return False
+        return request.user.user_type == "TRAIN_OPERATOR" or (
+            request.user.user_type == "POST_MASTER" and request.method == "GET"
+        )
 
 
 class PostMasterPermissions(permissions.BasePermission):
@@ -45,7 +29,4 @@ class PostMasterPermissions(permissions.BasePermission):
     """
 
     def has_permission(self, request, view):
-        if request.user.user_type == "POST_MASTER":
-            return True
-        else:
-            return False
+        return request.user.user_type == "POST_MASTER"

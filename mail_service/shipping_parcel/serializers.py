@@ -3,7 +3,6 @@ import datetime
 from rest_framework import serializers
 
 from core.serializers import UserSerializer
-
 from .models import Parcel, ShippedParcel, Train, TrainTrack
 
 
@@ -12,7 +11,7 @@ class ParcelSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Parcel
-        fields = "__all__"
+        fields = ("id", "parcel_owner", "parcel_name", "parcel_weight", "parcel_volume", "withdraw_bids")
 
 
 class PostTrainOfferSerializer(serializers.ModelSerializer):
@@ -20,7 +19,7 @@ class PostTrainOfferSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Train
-        fields = "__all__"
+        fields = ("id", "train_operator", "train_name", "capacity", "cost", "is_available", "withdraw_bids", "lines_they_operate")
 
 
 class TrainTrackSerializer(serializers.ModelSerializer):
@@ -28,33 +27,28 @@ class TrainTrackSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = TrainTrack
-        fields = ("created", "source", "destination", "is_busy")
+        fields = ("id", "created", "source", "destination", "is_busy")
 
     def get_is_busy(self, obj):
-        current_time = datetime.datetime.now()
-        if (
-            obj.shipped_track.first()
+        return (obj.shipped_track.first()
             and obj.shipped_track.first().created + datetime.timedelta(hours=3)
-            > current_time
-        ):
-            return True
-        return False
+            > datetime.datetime.now())
 
 
 class BookedTrainListSerializer(serializers.ModelSerializer):
-    train = PostTrainOfferSerializer()
-    parcel = ParcelSerializer()
-    assigned_lines = TrainTrackSerializer()
+    train = PostTrainOfferSerializer(read_only=True)
+    parcel = ParcelSerializer(read_only=True)
+    assigned_lines = TrainTrackSerializer(read_only=True)
 
     class Meta:
         model = ShippedParcel
-        fields = "__all__"
+        fields = ("id", "train", "parcel", "assigned_lines")
 
 
 class BookTrainAndShippedSerializer(serializers.ModelSerializer):
     class Meta:
         model = ShippedParcel
-        fields = "__all__"
+        fields = ("train", "parcel", "assigned_lines")
 
     def create(self, validated_data):
         train = validated_data.get("train")
